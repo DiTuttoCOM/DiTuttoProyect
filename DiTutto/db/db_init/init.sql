@@ -153,9 +153,6 @@ CREATE TABLE Interaccion_Atencion (
         REFERENCES Clientes(ID_cliente)
 );
 
--- ========================
--- INSERTS
--- ========================
 
 INSERT INTO Clientes (Nombre, Email, Telefono, Direccion, Fecha_registro, Password, Fecha_nacimiento)
 VALUES
