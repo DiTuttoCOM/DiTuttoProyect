@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres
+    container_name: mi_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: contraseña
+      POSTGRES_DB: mibase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db_init:/docker-entrypoint-initdb.d  # carpeta donde pusiste tu init.sql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"   # accedes a PgAdmin desde tu navegador en http://localhost:8080
+    depends_on:
+      - db
+    volumes:
+      - ./db_init:/docker-entrypoint-initdb.d
+
+  web:
+    build:
+      context: .        # usa el Dockerfile que tengas en esta carpeta
+      dockerfile: Dockerfile
+    container_name: mi_php
+    restart: always
+    ports:
+      - "8081:80"       # tu servidor PHP quedará en http://localhost:8081
+    volumes:
+      - ./src:/var/www/html   # carpeta local con tu código PHP
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  pgadmin_data:
