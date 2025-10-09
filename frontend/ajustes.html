@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis Ajustes - Di Tutto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="styless/stless.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="container-fluid py-3 px-4 bg-animated text-dark rounded">
+        <div class="d-flex flex-wrap flex-md-nowrap align-items-center gap-3">
+            <a href="index.html">
+                <img src="styless/img/Logo.png" alt="Logo" style="height: 48px; object-fit: contain;">
+            </a>
+            <input type="text" placeholder="Buscar productos..." class="form-control bg-white bg-opacity-75 border-0 rounded flex-grow-1 text-dark">
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-light rounded-pill px-3 btnCuenta" data-bs-toggle="modal" data-bs-target="#modalCuenta">👤</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-fluid mt-4">
+        <div class="row">
+            <aside class="col-md-3 mb-3">
+                <div class="bg-light text-dark p-3 rounded border border-success">
+                    <div class="text-center mb-3">
+                        <button class="btn btn-outline-dark rounded-circle imgUser">👤</button>
+                    </div>
+                    <ul class="list-group gap-2">
+                        <li class="list-group-item list-group-item-action bg-light text-white border border-success" data-section="perfil">Perfil</li>
+                        <li class="list-group-item list-group-item-action bg-light text-dark border border-success" data-section="seguimiento">Seguimiento de Pedidos</li>
+                        <li class="list-group-item list-group-item-action bg-light text-dark border border-success" data-section="transacciones">Transacciones</li>
+                        <li class="list-group-item list-group-item-action bg-light text-dark border border-success" data-section="publicaciones">Publicaciones</li>
+                        <li class="list-group-item list-group-item-action bg-light text-dark border border-success" data-section="seguridad">Seguridad</li>
+                    </ul>
+                </div>
+            </aside>
+            
+
+            <section class="col-md-9">
+                <div class="bg-light text-dark p-4 rounded border border-success contenido-opcion active" id="perfil">
+                    <h2 class="text-success">Perfil</h2>
+                    <p>Editar tu perfil y datos personales.</p>
+
+                    <div class="mb-3">
+                        <label for="perfilNombre" class="form-label text-success">Nombre de usuario</label>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="perfilEmail" class="form-label text-success">Email</label>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="perfilFechaNacimiento" class="form-label text-success">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label text-success">Número telefónico</label>
+                        <input type="tel" class="form-control"  placeholder="+598 1234 5678">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="idioma" class="form-label text-success">Idioma</label>
+                        <select id="idioma" class="form-select bg-light text-dark border border-success">
+                            <option value="es">Español</option>
+                            <option value="en">Inglés</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-success">Tema</label>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-success">Claro</button>
+                            <button type="button" class="btn btn-outline-dark">Oscuro</button>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <button id="guardarPerfil" class="btn btn-success me-2">Guardar cambios</button>
+                        <button id="cerrarSesion" class="btn btn-danger">Cerrar sesión</button>
+                    </div>
+                </div>
+
+                <div class="bg-light text-dark p-4 rounded border border-success contenido-opcion d-none" id="seguimiento">
+                    <h2 class="text-success">Seguimiento de Pedidos</h2>
+                    <p>Consulta el estado de tus pedidos y compras.</p>
+                    <div id="listaSeguimientoPedidos" class="mt-3">
+                        <p class="text-center text-secondary">Aún no hay pedidos en seguimiento.</p>
+                    </div>
+                </div>
+
+                <div class="bg-light text-dark p-4 rounded border border-success contenido-opcion d-none" id="transacciones">
+                    <h2 class="text-success">Transacciones</h2>
+                    <p>Consulta el historial de tus compras y ventas.</p>
+                </div>
+
+                <div class="bg-light text-dark p-4 rounded border border-success contenido-opcion d-none" id="publicaciones">
+                    <h2 class="text-success">Publicaciones</h2>
+                    <p>Administra tus publicaciones.</p>
+                    <button id="crearPublicacion" class="btn btn-success mb-3">Crear publicación</button>
+
+                    <div id="panelCrearPublicacion" class="panel-crear-publicacion d-none">
+                        <h3 class="text-success text-center mb-4" id="panelPublicacionTitulo">Nueva Publicación</h3>
+                        <div class="mb-3">
+                            <label for="publicacionNombre" class="form-label text-success">Nombre del Producto</label>
+                            <input type="text" id="publicacionNombre" class="form-control bg-light text-dark border border-success" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="publicacionPrecio" class="form-label text-success">Precio (U$S)</label>
+                            <input type="number" id="publicacionPrecio" class="form-control bg-light text-dark border border-success" step="0.01" min="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="publicacionDescripcion" class="form-label text-success">Descripción (Opcional)</label>
+                            <textarea id="publicacionDescripcion" rows="4" class="form-control bg-light text-dark border border-success"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="publicacionImagenArchivo" class="form-label text-success">Subir Imagen</label>
+                            <input type="file" id="publicacionImagenArchivo" class="form-control bg-light text-dark border border-success" accept="image/*">
+                            <small class="form-text text-muted mt-2">Sube una imagen.</small>
+                            <input type="hidden" id="publicacionImagenUrl" value=""> 
+                            <img id="publicacionImagenPrevia" src="#" alt="Previsualización" class="img-fluid mt-2" style="max-height: 150px; display: none;">
+                        </div>
+                        <div id="mensajePublicacion" class="mt-3 text-center fw-bold"></div>
+                        <div class="d-flex justify-content-end gap-2">
+                            <button id="guardarNuevaPublicacion" class="btn btn-success">Guardar Publicación</button>
+                            <button id="cancelarNuevaPublicacion" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </div>
+
+                    <div id="listaPublicacionesUsuario" class="mt-4">
+                        <h3 class="text-success text-center mb-3">Tus Publicaciones</h3>
+                        </div>
+                </div>
+
+                <div class="bg-light text-dark p-4 rounded border border-success contenido-opcion d-none" id="seguridad">
+                    <h2 class="text-success">Seguridad</h2>
+                    <p>Cambia tu contraseña.</p>
+
+                    <div class="mb-3">
+                        <label for="actualPassword" class="form-label text-success">Contraseña actual</label>
+                        <input type="password" id="actualPassword" class="form-control bg-light text-dark border border-success">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nuevaPassword" class="form-label text-success">Nueva contraseña</label>
+                        <input type="password" id="nuevaPassword" class="form-control bg-light text-dark border border-success">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirmarPassword" class="form-label text-success">Confirmar nueva contraseña</label>
+                        <input type="password" id="confirmarPassword" class="form-control bg-light text-dark border border-success">
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <button id="guardarPassword" class="btn btn-success">Cambiar contraseña</button>
+                        <button id="politicasSeguridad" class="btn btn-danger">Políticas de seguridad</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script/ajustes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
