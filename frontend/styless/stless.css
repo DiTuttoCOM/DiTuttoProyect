@@ -8,7 +8,7 @@ body {
     color: #333;
 }
 
-.bg-animated {
+.multicolor {
     background: linear-gradient(
         to right,
         #ff7e00,
@@ -16,16 +16,17 @@ body {
         #800080,
         #0000ff,
         #00ff00,
-        #ff7e00
+        #ff7e00,
     );
     background-size: 500% 100%;
-    animation: moverDegradado 10s linear infinite;
+    animation: animacion 10s linear infinite;
 }
 
-@keyframes moverDegradado {
+@keyframes animacion {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
+
 
 .carouselAnuncio {
     display: flex;
