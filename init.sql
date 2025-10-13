@@ -11,18 +11,12 @@ CREATE TABLE IF NOT EXISTS usuario (
 
 CREATE TABLE IF NOT EXISTS publicacion (
   id_publicacion   SERIAL PRIMARY KEY,
-  id_usuario       INT,
   nombre           TEXT NOT NULL,
   descripcion      TEXT,
   precio           NUMERIC(10,2) NOT NULL DEFAULT 0.00,
-  categoria        TEXT,
-  estado           TEXT,
-  descuento        NUMERIC(5,2) DEFAULT 0.00,
   imagen_url       TEXT,
   calificacion     NUMERIC(3,2)
-  FOREIGN KEY id_usuario REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS comentarios (
   id_comentario  SERIAL PRIMARY KEY,
@@ -60,15 +54,15 @@ CREATE INDEX idx_detalle_pedido_pedido ON detalle_pedido(id_pedido);
 ALTER TABLE detalle_pedido
   ADD CONSTRAINT chk_cantidad_positive CHECK (cantidad > 0);
 
-INSERT INTO publicacion (id_publicacion, nombre, descripcion, precio, categoria, estado, descuento, imagen_url, calificacion)
+INSERT INTO publicacion (id_publicacion, nombre, descripcion, precio, imagen_url, calificacion)
 VALUES
-(1, 'PC Gamer Ultra', 'PC de alto rendimiento con RTX 4070 y Ryzen 7', 1000, 'Helectronica', 'Disponible', 10.00, 'styless/img/producto1.webp', 4),
-(2, 'Licuadora', 'Licuadora de alta potencia y fácil limpieza', 350, 'Hogar', 'Disponible', 0.00, 'styless/img/producto2.webp', 4),
-(3, 'Inodoro gamer', 'Bluetooth 5.3', 80, 'Hogar', 'Disponible', 5.00, 'styless/img/producto3.webp', 2),
-(4, 'Pistola de portales', 'Pistoliñia de portaliñios', 45, 'Helectronica', 'Disponible', 0.00, 'styless/img/producto4.webp', 4),
-(5, 'Rastreador de las esferas del dragon"', 'Rastreador de las esferas del dragon', 500, 'Helectronica', 'Sin stock', 0.00, 'styless/img/producto5.webp', 4),
-(6, 'Peluche de Vaporeon', 'POKEMON!!!!', 500, 'Juguetes', 'Sin stock', 0.00, 'styless/img/producto6.webp', 2),
-(7, 'Bomba atoica', 'Monitor curvo 144Hz QHD', 500.00, 'Helectronica', 'Sin stock', 0.00, 'styless/img/producto7.webp', 1);
+(1, 'PC Gamer Ultra', 'PC de alto rendimiento con RTX 4070 y Ryzen 7', 1000, 'styless/img/producto1.webp', 4),
+(2, 'Licuadora', 'Licuadora de alta potencia y fácil limpieza', 350, 'styless/img/producto2.webp', 4),
+(3, 'Inodoro gamer', 'Bluetooth 5.3', 80, 'styless/img/producto3.webp', 2),
+(4, 'Pistola de portales', 'Pistoliñia de portaliñios', 45, 'styless/img/producto4.webp', 4),
+(5, 'Rastreador de las esferas del dragon"', 'Rastreador de las esferas del dragon', 500, 'styless/img/producto5.webp', 4),
+(6, 'Peluche de Vaporeon', 'POKEMON!!!!', 500, 'styless/img/producto6.webp', 2),
+(7, 'Bomba atoica', 'Monitor curvo 144Hz QHD', 500.00, 'styless/img/producto7.webp', 1);
 
 
 INSERT INTO usuario (id_usuario, nombre, email, rango, telefono, direccion, password_hash, fecha_nacimiento) VALUES

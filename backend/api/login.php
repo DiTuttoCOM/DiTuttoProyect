@@ -1,7 +1,6 @@
 <?php
 header('Content-Type: application/json');
 
-// Conexión directa (sin include)
 $host = "db";
 $port = "5432";
 $dbname = "DiTutto";
@@ -18,7 +17,6 @@ if (!$conn) {
     exit;
 }
 
-// Obtener datos del login
 $data = json_decode(file_get_contents("php://input"), true);
 $email = trim($data['email'] ?? '');
 $contrasena = trim($data['contrasena'] ?? '');
@@ -28,7 +26,6 @@ if (empty($email) || empty($contrasena)) {
     exit;
 }
 
-// Buscar usuario por email
 $query = "SELECT * FROM usuario WHERE email = $1";
 $result = pg_query_params($conn, $query, [$email]);
 
@@ -39,13 +36,11 @@ if (!$result || pg_num_rows($result) === 0) {
 
 $usuario = pg_fetch_assoc($result);
 
-// Verificar contraseña usando password_verify
 if (!password_verify($contrasena, $usuario['password_hash'])) {
     echo json_encode(['ok' => false, 'mensaje' => 'Contraseña incorrecta.']);
     exit;
 }
 
-// Login correcto: devolver datos completos para localStorage
 echo json_encode([
     'ok' => true,
     'mensaje' => 'Inicio de sesión exitoso.',

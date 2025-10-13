@@ -17,23 +17,19 @@ if (!$conn) {
     exit;
 }
 
-// Leer JSON
 $data = json_decode(file_get_contents('php://input'), true);
 $nombre = $data['nombre'] ?? '';
 $email = $data['email'] ?? '';
 $password = $data['password'] ?? '';
 $fecha_nacimiento = $data['fecha_nacimiento'] ?? null;
 
-// Validar básicos
 if (empty($nombre) || empty($email) || empty($password)) {
     echo json_encode(['ok' => false, 'mensaje' => 'Faltan datos obligatorios']);
     exit;
 }
 
-// Hashear la contraseña
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-// Verificar duplicado
 $checkQuery = "SELECT id_usuario FROM usuario WHERE email = $1";
 $checkResult = pg_query_params($conn, $checkQuery, [$email]);
 
@@ -42,7 +38,6 @@ if ($checkResult && pg_num_rows($checkResult) > 0) {
     exit;
 }
 
-// Intentar insertar
 $query = "INSERT INTO usuario (nombre, email, rango, telefono, direccion, password_hash, fecha_nacimiento)
           VALUES ($1, $2, 'usuario', NULL, NULL, $3, $4)
           RETURNING id_usuario";
@@ -50,7 +45,6 @@ $query = "INSERT INTO usuario (nombre, email, rango, telefono, direccion, passwo
 $result = pg_query_params($conn, $query, [$nombre, $email, $password_hash, $fecha_nacimiento]);
 
 if (!$result) {
-    // Muestra el error exacto de PostgreSQL
     echo json_encode([
         'ok' => false,
         'mensaje' => 'Error en INSERT: ' . pg_last_error($conn)

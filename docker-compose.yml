@@ -13,7 +13,6 @@ services:
       db:
         condition: service_healthy
     environment:
-      # Para conexión desde PHP (por si querés usarlos en el código)
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: DiTutto
