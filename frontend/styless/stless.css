@@ -78,3 +78,12 @@ body {
 .notificacion button:hover {
     background: #0056b3;
 }
+
+header input#barraBusqueda {
+  min-height: 36px;
+}
+
+header select {
+  min-height: 36px;
+  padding: 4px 8px;
+}
