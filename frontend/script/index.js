@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const confirmarContrasenaInput = document.getElementById('confirmarContr');
             const fechaNacimientoInput = document.getElementById('fechaNac');
 
+            // Validaciones básicas
             if (!nombreInput.value || !emailInput.value || !contrasenaInput.value || !confirmarContrasenaInput.value || !fechaNacimientoInput.value) {
                 errorDiv.textContent = "Rellene todos los campos, por favor.";
                 return;
@@ -158,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const usuario = JSON.parse(localStorage.getItem('usuario'));
         const btnCuenta = document.querySelector('.btnCuenta');
         
-        if (usuario && btnCuenta ) {
+        if (usuario && btnCuenta) {
             let nuevoBtn;
             if (usuario.rango === "admin") {
                 nuevoBtn = document.createElement('a');
@@ -192,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
         contenedor.innerHTML = '';
 
         publicaciones.forEach(publicacion => {
-            div.className = 'col-12 col-sm-6 col-md-3 mb-4';
+            const div = document.createElement('div');
             div.className = 'col-12 col-md-4 casilla-publicacion mb-3';
             div.dataset.id = publicacion.id_publicacion;
             const estrella = publicacion.calificacion ? '⭐'.repeat(Math.round(publicacion.calificacion)) : '';

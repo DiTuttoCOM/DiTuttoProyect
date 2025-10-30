@@ -44,8 +44,6 @@ $query = "INSERT INTO usuario (nombre, email, rango, telefono, direccion, passwo
 
 $result = pg_query_params($conn, $query, [$nombre, $email, $password_hash, $fecha_nacimiento]);
 
-$rango = ($email === 'silvanemaberriel@gmail.com') ? 'admin' : 'usuario';
-
 if (!$result) {
     echo json_encode([
         'ok' => false,
@@ -63,7 +61,7 @@ echo json_encode([
         'id_usuario' => $usuario['id_usuario'],
         'nombre' => $nombre,
         'email' => $email,
-        'rango' => $rango
+        'rango' => 'usuario'
     ]
 ]);
 ?>

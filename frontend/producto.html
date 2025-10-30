@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Di Tutto</title>
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styless/stless.css" rel="stylesheet">
+
+    <!-- Tu hoja de estilos general -->
+    <link rel="stylesheet" href="styless/stless.css">
 </head>
 <body>
+    <!-- ====== HEADER ====== -->
     <header class="container-fluid py-3 px-4 multicolor text-white rounded">
         <div class="d-flex flex-wrap flex-md-nowrap align-items-center gap-3">
             <a href="index.html">
@@ -20,6 +25,7 @@
         </div>
     </header>
 
+    <!-- ====== CONTENIDO PRINCIPAL ====== -->
     <main class="container my-4">
         <div class="bg-light bg-opacity-75 text-white rounded p-4 mb-4 text-center">
             <img id="imagenProducto" src="" alt="Producto" class="img-fluid mx-auto d-block" style="max-height: 300px; object-fit: contain;">
@@ -27,22 +33,34 @@
 
         <div class="d-flex justify-content-between align-items-center bg-secondary bg-opacity-50 text-dark px-4 py-3 rounded mb-4">
             <h4 id="nombreBarra" class="mb-0 fw-bold text-white">Producto</h4>
-            <button id="btnAddCarrito" class="btn btn-success">Añadir al carrito</button>
+            <div class="d-flex align-items-center gap-2">
+                <button id="btnFavorito" class="btn btn-outline-danger fs-5">♡</button>
+                <button id="btnAddCarrito" class="btn btn-success">Añadir al carrito</button>
+            </div>
         </div>
 
         <div class="row g-4">
+            <!-- Descripción y Comentarios -->
             <div class="col-md-8">
                 <div class="bg-white rounded shadow-sm p-4 border border-success">
                     <h5 class="text-success">Descripción</h5>
                     <p id="descripcionProducto">Sin descripción.</p>
+
                     <hr />
+
                     <h6 class="text-success">Comentarios</h6>
-                    <div id="comentariosProducto">
+                    <div id="comentariosProducto" class="mb-3">
                         <p class="text-muted">No hay comentarios aún.</p>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" id="nuevoComentario" class="form-control" placeholder="Escribe un comentario...">
+                        <button id="btnComentar" class="btn btn-success">Comentar</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Lado derecho (precio y estrellas) -->
             <div class="col-md-4">
                 <div class="bg-light rounded shadow-sm p-4 border border-success text-center">
                     <div class="mb-3">
@@ -51,13 +69,14 @@
                     </div>
                     <div class="mb-3">
                         <span class="d-block text-success fw-bold">Estrellas:</span>
-                        <span id="estrellasProducto" class="fs-5 text-warning"></span>
+                        <span id="estrellasProducto" class="fs-5 text-warning">★★★★★</span>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- ====== MODAL DE BANEO ====== -->
     <div id="modalBaneo" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -77,7 +96,40 @@
         </div>
     </div>
 
+    <!-- ====== SCRIPTS ====== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script/producto.js"></script>
+    <script>
+        // ==== SISTEMA DE FAVORITOS ====
+        const btnFavorito = document.getElementById('btnFavorito');
+        let esFavorito = false;
+
+        btnFavorito.addEventListener('click', () => {
+            esFavorito = !esFavorito;
+            btnFavorito.textContent = esFavorito ? '❤️' : '♡';
+            btnFavorito.classList.toggle('btn-danger', esFavorito);
+            btnFavorito.classList.toggle('btn-outline-danger', !esFavorito);
+        });
+
+        // ==== SISTEMA DE COMENTARIOS ====
+        const comentariosDiv = document.getElementById('comentariosProducto');
+        const nuevoComentarioInput = document.getElementById('nuevoComentario');
+        const btnComentar = document.getElementById('btnComentar');
+
+        btnComentar.addEventListener('click', () => {
+            const texto = nuevoComentarioInput.value.trim();
+            if (texto === '') return;
+
+            const comentario = document.createElement('p');
+            comentario.classList.add('border', 'border-success', 'rounded', 'p-2', 'mb-2', 'bg-light');
+            comentario.textContent = texto;
+
+            if (comentariosDiv.querySelector('.text-muted')) {
+                comentariosDiv.innerHTML = '';
+            }
+            comentariosDiv.appendChild(comentario);
+            nuevoComentarioInput.value = '';
+        });
+    </script>
 </body>
 </html>

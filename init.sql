@@ -88,6 +88,13 @@ CREATE TABLE IF NOT EXISTS MensajesChatbot(
   FOREIGN KEY (id_chatbot) REFERENCES Chatbot(id_chatbot) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS notificaciones (
+  id_notificacion SERIAL PRIMARY KEY,
+  id_usuario      INT,
+  contenido       TEXT,
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);
+
 CREATE INDEX idx_pedidos_cliente ON pedidos(id_cliente);
 CREATE INDEX idx_detalle_pedido_pedido ON detalle_pedido(id_pedido);
 
@@ -198,3 +205,14 @@ INSERT INTO MensajesChatbot (id_chatbot, mensaje) VALUES
 (9, 'No funciona.'),;
 (10,'Nesesito ayuda con mi compra.');,
 
+INSERT INTO notificaciones (id_usuario, contenido) VALUES
+(1, 'Tu pedido #1001 ha sido confirmado.'),
+(2, 'Tu pedido #1002 está en camino.'),
+(3, 'Nuevo mensaje en tu chat con el soporte.'),
+(4, 'Has recibido una nueva reseña en tu publicación.'),
+(5, 'Tu contraseña fue cambiada exitosamente.'),
+(6, 'Se ha actualizado el estado de tu pedido.'),
+(7, 'Tu cuenta ha sido verificada correctamente.'),
+(8, 'Nuevo seguidor en tu perfil.'),
+(9, 'Tu publicación fue marcada como destacada.'),
+(10, 'Recibiste una nueva notificación del sistema.');
