@@ -1,0 +1,202 @@
+/* ======== ESTILO GENERAL ======== */
+body {
+  background: url('img/background.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* ======== ENCABEZADO MULTICOLOR ======== */
+header.multicolor {
+  background: linear-gradient(
+    to right,
+    #ff7e00,
+    #ff0000,
+    #800080,
+    #0000ff,
+    #00ff00,
+    #ff7e00
+  );
+  background-size: 500% 100%;
+  animation: animacion 10s linear infinite;
+  color: #fff;
+}
+
+@keyframes animacion {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* ======== PUBLICACIONES Y TARJETAS ======== */
+.casilla-publicacion:hover {
+  transform: scale(1.03);
+}
+
+.publicacion-imagen {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.publicacion-usuario-item {
+  display: flex;
+  align-items: center;
+  background-color: #222;
+  border: 1px solid #444;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px;
+  gap: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ======== NOTIFICACIONES ======== */
+#notificaciones {
+  max-width: 400px;
+  margin: 20px;
+}
+
+.notificacion {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.notificacion button {
+  margin-top: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: none;
+  background: #007bff;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.notificacion button:hover {
+  background: #0056b3;
+}
+
+/* ======== ELEMENTOS VERDES (ADMIN) ======== */
+.list-group-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-color: #dfffe0;
+}
+
+.list-group-item.active {
+  background-color: #198754 !important;
+  color: white !important;
+  border-color: #198754 !important;
+}
+
+.contenido-opcion {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.imgUser {
+  font-size: 2rem;
+  border: 2px solid #198754;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.table-success th {
+  background-color: #198754 !important;
+  color: white !important;
+}
+
+.border-success {
+  border-color: #198754 !important;
+}
+
+.btn-success {
+  background-color: #198754;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #146c43;
+}
+
+.btn-outline-dark:hover {
+  background-color: #343a40;
+  color: white;
+}
+
+/* ======== TARJETAS ======== */
+.card, .bg-light {
+  backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-radius: 10px;
+}
+
+/* ======== BOTÓN DE FAVORITOS ======== */
+#btnFavorito {
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+#btnFavorito:hover {
+  transform: scale(1.2);
+}
+
+  #chatToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    font-size: 24px;
+  }
+
+  #chatContainer {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+
+  #messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  .message { margin-bottom: 10px; padding: 8px; border-radius: 5px; }
+  .user { background-color: #dcf8c6; text-align: right; }
+  .bot { background-color: #f1f0f0; text-align: left; }
+
+  #inputContainer { display: flex; border-top: 1px solid #ccc; }
+  #userInput { flex: 1; border: none; padding: 10px; font-size: 14px; }
+  #sendBtn { background-color: #007bff; color: white; border: none; padding: 0 15px; cursor: pointer; }
