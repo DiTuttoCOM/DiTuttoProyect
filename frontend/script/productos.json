@@ -1,0 +1,82 @@
+[
+  {
+    "id_publicacion": 1,
+    "nombre": "PC Gamer Ultra",
+    "descripcion": "PC de alto rendimiento con RTX 4070 y Ryzen 7",
+    "precio": 1000,
+    "imagen_url": "styless/img/producto1.webp",
+    "calificacion": 4
+  },
+  {
+    "id_publicacion": 2,
+    "nombre": "Licuadora",
+    "descripcion": "Licuadora de alta potencia y fácil limpieza",
+    "precio": 350,
+    "imagen_url": "styless/img/producto2.webp",
+    "calificacion": 4
+  },
+  {
+    "id_publicacion": 3,
+    "nombre": "Auriculares Azules",
+    "descripcion": "Bluetooth 5.3, azul, JBL",
+    "precio": 80,
+    "imagen_url": "styless/img/producto3.webp",
+    "calificacion": 2
+  },
+  {
+    "id_publicacion": 4,
+    "nombre": "Pistola de portales",
+    "descripcion": "Pistoliñia de portaliñios",
+    "precio": 45,
+    "imagen_url": "styless/img/producto4.webp",
+    "calificacion": 4
+  },
+  {
+    "id_publicacion": 5,
+    "nombre": "Rastreador de las esferas del dragón",
+    "descripcion": "Rastreador de las esferas del dragón",
+    "precio": 500,
+    "imagen_url": "styless/img/producto5.webp",
+    "calificacion": 4
+  },
+  {
+    "id_publicacion": 6,
+    "nombre": "Peluche de Vaporeon",
+    "descripcion": "POKEMON!!!!",
+    "precio": 500,
+    "imagen_url": "styless/img/producto6.webp",
+    "calificacion": 2
+  },
+  {
+    "id_publicacion": 7,
+    "nombre": "Camisa",
+    "descripcion": "Talle M, color dorado",
+    "precio": 500,
+    "imagen_url": "styless/img/producto7.webp",
+    "calificacion": 1
+  },
+  {
+    "id_publicacion": 8,
+    "nombre": "Casita de juguetes",
+    "descripcion": "De Matel",
+    "precio": 60,
+    "imagen_url": "styless/img/producto8.webp",
+    "calificacion": 4
+  },
+  {
+    "id_publicacion": 9,
+    "nombre": "Sapo Toto",
+    "descripcion": "Máxima diversión",
+    "precio": 500,
+    "imagen_url": "styless/img/producto9.jpg",
+    "calificacion": 1
+  },
+  {
+    "id_publicacion": 10,
+    "nombre": "Collar Deadpool 3",
+    "descripcion": "Collares de la película Deadpool 3 en forma de corazón",
+    "precio": 500,
+    "imagen_url": "styless/img/producto10.webp",
+    "calificacion": 1
+  }
+]
