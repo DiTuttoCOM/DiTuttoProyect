@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const carritoBtn = document.querySelector('.carrito-boton');
     const modal = document.getElementById('modalCarrito');
 
-    // 🧮 Actualiza la vista del carrito
     function actualizarCarrito() {
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         modalBody.innerHTML = '';
@@ -42,21 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // ➖ Eliminar producto
             item.querySelector('.btn-eliminar').addEventListener('click', () => {
                 carrito.splice(index, 1);
                 guardarCarrito(carrito);
                 actualizarCarrito();
             });
 
-            // ➕ Sumar cantidad
             item.querySelector('.btn-sumar').addEventListener('click', () => {
                 carrito[index].cantidad++;
                 guardarCarrito(carrito);
                 actualizarCarrito();
             });
 
-            // ➖ Restar cantidad
             item.querySelector('.btn-restar').addEventListener('click', () => {
                 if (carrito[index].cantidad > 1) {
                     carrito[index].cantidad--;
@@ -74,19 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarContador();
     }
 
-    // 💾 Guarda el carrito en localStorage
     function guardarCarrito(carrito) {
         localStorage.setItem('carrito', JSON.stringify(carrito));
     }
 
-    // 🔢 Actualiza el número del ícono del carrito
     function actualizarContador() {
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         const cantidadTotal = carrito.reduce((sum, p) => sum + p.cantidad, 0);
         carritoBtn.textContent = `🛒 (${cantidadTotal})`;
     }
 
-    // 💳 Redirigir al link de pago real
     btnComprar.addEventListener('click', () => {
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         if (carrito.length === 0) {
@@ -94,18 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // (Opcional) Limpia el carrito al comprar
         localStorage.removeItem('carrito');
         actualizarContador();
 
-        // Mensaje de feedback y redirección
         alert('Redirigiendo al pago seguro en Mercado Pago...');
         window.location.href = 'https://link.mercadopago.com.uy/dituttosite';
     });
 
-    // 🚀 Inicialización
     actualizarCarrito();
 
-    // Cada vez que se abre el modal, se refresca el contenido
     modal.addEventListener('show.bs.modal', actualizarCarrito);
 });
